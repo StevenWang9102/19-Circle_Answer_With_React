@@ -66,7 +66,7 @@ export const MainCircle = () => {
 
   const outerRing = {
     zIndex: 1,
-    border: "2px solid blue",
+    // border: "2px solid blue",
     position: "absolute",
     opacity: 0.4,
     top: 0,
