@@ -2,38 +2,37 @@ import { useState } from "react";
 import { TextOnRing } from "./textOnRing";
 import mag from './img/Magnifier.svg'
 import vis from './img/VisitArrow.svg'
-import wrong from './img/wrong.png'
 import wrong1 from './img/wrong1.png'
 
+const colorMap = [
+  [
+    "white", "white", "white",  "white", "white", "white", "gray",
+    "gray", "gray",
+  ],
+  [
+    "red",
+    "white",
+    "white",
+    "white",
+    "white",
+    "white",
+    "gray",
+    "gray",
+    "gray",
+  ],
+  ["red", "red", "white", "white", "white", "white", "gray", "gray", "gray"],
+  ["red", "red", "red", "white", "white", "white", "gray", "gray", "gray"],
+  ["red", "red", "red", "red", "white", "white", "gray", "gray", "gray"],
+  ["red", "red", "red", "red", "red", "white", "gray", "gray", "gray"],
+  ["red", "red", "red", "red", "red", "red", "gray", "gray", "gray"],
+  ["red", "red", "red", "red", "red", "red", "red", "gray", "gray"],
+  ["red", "red", "red", "red", "red", "red", "red", "red", "red"],
+  ["red", "red", "red", "red", "red", "red", "red", "red", "red"],
+];
+
 export const MainCircle = () => {
-  const colorMap = [
-    [
-      "white", "white", "white",  "white", "white", "white", "gray",
-      "gray", "gray",
-    ],
-    [
-      "red",
-      "white",
-      "white",
-      "white",
-      "white",
-      "white",
-      "gray",
-      "gray",
-      "gray",
-    ],
-    ["red", "red", "white", "white", "white", "white", "gray", "gray", "gray"],
-    ["red", "red", "red", "white", "white", "white", "gray", "gray", "gray"],
-    ["red", "red", "red", "red", "white", "white", "gray", "gray", "gray"],
-    ["red", "red", "red", "red", "red", "white", "gray", "gray", "gray"],
-    ["red", "red", "red", "red", "red", "red", "gray", "gray", "gray"],
-    ["red", "red", "red", "red", "red", "red", "red", "gray", "gray"],
-    ["red", "red", "red", "red", "red", "red", "red", "red", "red"],
-    ["red", "red", "red", "red", "red", "red", "red", "red", "red"],
-  ];
 
   const [currentColors, setColorList] = useState(colorMap[0]);
-  const [stop, setStop] = useState(false);
 
   const innnerRing = {
     zIndex: 211,
@@ -74,32 +73,10 @@ export const MainCircle = () => {
     left: 0,
   };
 
-  const dashRing = {
-    zIndex: 1,
-    position: "absolute",
-    opacity: 1,
-    strokeDasharray: "150 10",
-    strokeDashoffset: "-10",
-    top: 0,
-    left: 0,
-  };
-
   const button = {
     cursor: "pointer",
     zIndex: 6000,
     marginLeft: 500,
-  };
-
-  const button1 = {
-    cursor: "pointer",
-    zIndex: 100,
-    marginLeft: 580,
-  };
-
-  const h1 = {
-    textAlign: "center",
-    marginTop: "60px",
-    marginBottom: "30px",
   };
 
   const nameStyle = {
@@ -108,13 +85,6 @@ export const MainCircle = () => {
     top: 290,
     left: 295,
   }
-
-  const circular = {
-    zIndex: 1000,
-    margin: "0 auto",
-    width: "10em",
-    height: "10em",
-  };
 
   const svg = {
     display: "block",
@@ -137,9 +107,7 @@ export const MainCircle = () => {
     };
   };
 
-  var interval;
   var counter = 0;
-
   const getName = () => {
     var counter = 0
     currentColors.forEach(each => {
@@ -150,37 +118,19 @@ export const MainCircle = () => {
     else  return `Lit${counter}`
   };
 
-  const getLitNum = () => {
-    var counter = 0
-    currentColors.forEach(each => {
-      if (each == 'red') counter++
-    })
-    return counter
-  };
-
   const isPositionRed = (position) => {
     var counter = 0
     if(currentColors[position-1]==='red') return true
     else return false
    };
 
-  const demo ={
-    width: "600px",
-    height: "600px",
-    backgroundColor: "#000000",
-    padding: "100px",
-    boxSizing: "borderBox",
-  }
 
   const myWrong={
     position: 'absolute',
     top: 150,
     left: 150,
     zIndex: 20000,
-    
   }
-
-  console.log('currentColors789123',currentColors);
 
   const opacityStyle = {width:40, zIndex: 20000}
   const opacityStyleNull = {width: 40, zIndex: 20000, opacity: 0}
@@ -261,31 +211,6 @@ export const MainCircle = () => {
           />
         </svg>
 
-        {/* const colorMap = [
-    [
-      "white", "white", "white",  "white", "white", "white", "gray",
-      "gray", "gray",
-    ],
-    [
-      "red",
-      "white",
-      "white",
-      "white",
-      "white",
-      "white",
-      "gray",
-      "gray",
-      "gray",
-    ],
-    3["red", "red", "white", "white", "white", "white", "gray", "gray", "gray"],
-    4["red", "red", "red", "white", "white", "white", "gray", "gray", "gray"],
-    5["red", "red", "red", "red", "white", "white", "gray", "gray", "gray"],
-    6["red", "red", "red", "red", "red", "white", "gray", "gray", "gray"],
-    7["red", "red", "red", "red", "red", "red", "gray", "gray", "gray"],
-    8["red", "red", "red", "red", "red", "red", "red", "gray", "gray"],
-    9["red", "red", "red", "red", "red", "red", "red", "red", "red"],
-    10["red", "red", "red", "red", "red", "red", "red", "red", "red"],
-  ]; */}
         
         <div className='myWrong' style={myWrong}>
           <ul>
@@ -297,11 +222,8 @@ export const MainCircle = () => {
             <li><img src={wrong1} style={isPositionRed(8)? opacityStyle: opacityStyleNull}/></li>
             <li><img src={wrong1} style={isPositionRed(1)? opacityStyle: opacityStyleNull}/></li>
             <li><img src={wrong1} style={isPositionRed(2)? opacityStyle: opacityStyleNull}/></li>
- 
           </ul>
         </div>
-
-
 
         {/* ---------------------- Slice 1 ----------------------  */}
         <svg height='1000' width='1000' style={getOffSet("-650")}>
